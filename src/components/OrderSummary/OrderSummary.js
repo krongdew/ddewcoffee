@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import { Button } from 'antd';
+import { Button,Select,Table } from 'antd';
 import colors from 'tailwindcss/colors';
 
 
@@ -42,8 +42,29 @@ const [finalTotal, setFinalTotal] = useState(calculateTotal()); // State สำ�
         <h3 className="text-xl font-semibold mb-4">Order Summary</h3>
         {orderItems.map((item, index) => (
           <div key={index} className="flex justify-between items-center mb-2 ">
+            
+            <div className=""> 
             <span className="text-slate-900 text-lg">{item.name}</span>
-            <span className="text-slate-900 text-sm">{item.name}</span>
+            <br></br>
+            <Select defaultValue="หวานปกติ"  className="text-slate-900 text-sm" 
+             options={[
+                { value: '1', label: 'หวานปกติ' },
+                { value: '2', label: 'หวาน 50%' },
+                { value: '3', label: 'หวาน 25%' },
+              ]}>
+            </Select>
+            <Select 
+            defaultValue="ใส่แก้ว"  
+            className="text-slate-900 text-sm ml-2" 
+            options={[
+                { value: '1', label: 'ใส่แก้ว' },
+                { value: '2', label: 'ใส่ขวด' },
+                { value: '3', label: 'แยกน้ำ ใส่แก้ว' },
+              ]}>
+            </Select>
+            </div>
+            
+           
             
             <div className="flex items-center">
               <button 
@@ -88,14 +109,27 @@ const [finalTotal, setFinalTotal] = useState(calculateTotal()); // State สำ�
             <Button 
               type="primary" 
               onClick={applyDiscount}
-              className="py-1 px-4"
+              className="p-5 text-lg"
             >
               Apply Discount
             </Button>
           </div>
-          <p>Total: ฿{calculateTotal().toFixed(2)}</p>
-          <p>Discount: ฿{discount.toFixed(2)}</p>
-          <p>Net Total: ฿{finalTotal.toFixed(2)}</p>
+          <table className="text-lg">
+            <tr>
+                <td>Total: </td>
+                <td>฿{calculateTotal().toFixed(2)}</td>
+            </tr>
+            <tr>
+                <td>Discount: </td>
+                <td>฿{discount.toFixed(2)}</td>
+            </tr>
+            <tr>
+                <td>Net Total: </td>
+                <td>฿{finalTotal.toFixed(2)}</td>
+            </tr>
+          </table>
+          
+        
           <br />
           <Button type="primary">Checkout</Button>
         </div>
