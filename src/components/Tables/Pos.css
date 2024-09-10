@@ -1,0 +1,54 @@
+.coffee-shop {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .menu-section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+  }
+  
+  .menu-item {
+    width: 200px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .order-summary {
+    width: 30%;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .order-item {
+    margin-bottom: 20px;
+  }
+  
+  .discount-section {
+    margin-top: 20px;
+  }
+  
+  .checkout-button {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .checkout-button:hover {
+    background-color: #0056b3;
+  }
+  
