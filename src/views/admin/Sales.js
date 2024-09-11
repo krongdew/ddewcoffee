@@ -62,11 +62,13 @@ const CoffeeShopPage = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="p-2 border rounded-lg w-1/2"
+            style={{zIndex:1}}
           />
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             className="p-2 border rounded-lg"
+            style={{zIndex:0}}
           >
             <option value="All">All Types</option>
             <option value="Coffee">Coffee</option>

@@ -25,10 +25,10 @@ export default function Admin() {
         {/* Header */}
         {/* <HeaderStats /> */}
         
-        <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12 z-0">
+        <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12 " style={{zIndex:0}}>
         </div>
         
-        <div className="px-4 md:px-10 mx-auto w-full -m-24">
+        <div className="px-4 md:px-10 mx-auto w-full -m-24 h-screen">
           <Switch>
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/sales" exact component={Sales} />
@@ -37,8 +37,9 @@ export default function Admin() {
             <Route path="/admin/tables" exact component={Tables} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
-          <FooterAdmin />
+          
         </div>
+        <FooterAdmin />
       </div>
     </>
   );
