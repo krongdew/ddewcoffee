@@ -15,6 +15,7 @@ import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 import Sales from "views/admin/Sales.js";
+import Order from "views/admin/Order.js"
 import Report from "views/admin/Report"
 
 export default function Admin() {
@@ -33,6 +34,7 @@ export default function Admin() {
           <Switch>
             <Route path="/admin/dashboard" exact component={Dashboard} />
             <Route path="/admin/sales" exact component={Sales} />
+            <Route path="/admin/order" exact component={Order} />
             <Route path="/admin/report" exact component={Report} />
             <Route path="/admin/maps" exact component={Maps} />
             <Route path="/admin/settings" exact component={Settings} />
