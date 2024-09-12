@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 // Sample order data (replace with actual data)
 const orders = [
     {
@@ -12,8 +13,8 @@ const orders = [
       deliveryType: 'Delivery', // or 'Dine-in'
       deliveryAddress: '123 Coffee Lane, Brewtown',
       coffeeItems: [
-        { name: 'Latte', sweetness: 'Medium', type: 'Cup', separate: 'No' },
-        { name: 'Espresso', sweetness: 'Low', type: 'Cup', separate: 'Yes' },
+        { name: 'Latte', sweetness: 'Medium', type: 'Cup', separate: 'No', qty:'1' },
+        { name: 'Espresso', sweetness: 'Low', type: 'Cup', separate: 'Yes',  qty:'1'},
       ],
       total: 300,
       paymentStatus: 'Paid' // or 'Pending'
@@ -23,11 +24,11 @@ const orders = [
       queueNumber: 102,
       customerName: '',
       orderDate: '2024-09-12',
-      phone: '',
+      phone: '123-456-7890',
       cups: 1,
       deliveryType: 'Dine-in',
       coffeeItems: [
-        { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+        { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
       ],
       total: 150,
       paymentStatus: 'Pending'
@@ -41,7 +42,7 @@ const orders = [
         cups: 1,
         deliveryType: 'Dine-in',
         coffeeItems: [
-          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
         ],
         total: 150,
         paymentStatus: 'Pending'
@@ -55,7 +56,7 @@ const orders = [
         cups: 1,
         deliveryType: 'Dine-in',
         coffeeItems: [
-          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
         ],
         total: 150,
         paymentStatus: 'Pending'
@@ -69,7 +70,7 @@ const orders = [
         cups: 1,
         deliveryType: 'Dine-in',
         coffeeItems: [
-          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
         ],
         total: 150,
         paymentStatus: 'Pending'
@@ -83,7 +84,7 @@ const orders = [
         cups: 1,
         deliveryType: 'Dine-in',
         coffeeItems: [
-          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
         ],
         total: 150,
         paymentStatus: 'Pending'
@@ -97,7 +98,7 @@ const orders = [
         cups: 1,
         deliveryType: 'Dine-in',
         coffeeItems: [
-          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
         ],
         total: 150,
         paymentStatus: 'Pending'
@@ -111,7 +112,7 @@ const orders = [
         cups: 1,
         deliveryType: 'Dine-in',
         coffeeItems: [
-          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
         ],
         total: 150,
         paymentStatus: 'Pending'
@@ -125,7 +126,7 @@ const orders = [
         cups: 1,
         deliveryType: 'Dine-in',
         coffeeItems: [
-          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No' },
+          { name: 'Americano', sweetness: 'None', type: 'Cup', separate: 'No',qty:'1' },
         ],
         total: 150,
         paymentStatus: 'Pending'
@@ -185,13 +186,32 @@ const orders = [
             <div
               key={order.id}
               className="border rounded-lg p-4 m-2 bg-white w-48" // Set width to 200px (approx. 48 * 4px)
-              style={{ minWidth: '200px', zIndex:9 }}
+              style={{ minWidth: '250px', zIndex:9 }}
             >
-              <h3 className="font-bold">Queue: {order.queueNumber}</h3>
-              <p>Customer: {order.customerName}</p>
-              <p>Order Date: {order.orderDate}</p>
-              {order.phone && <p>Phone: {order.phone}</p>}
-              <p>Cups: {order.cups}</p>
+              <h1 className="font-bold text-xl mb-2">Queue: {order.queueNumber}</h1>
+              <hr></hr>
+                <table className="text-base mt-1">
+                    <tr>
+                        <td>Customer : </td>
+                        <td></td>
+                        <td><p>{order.customerName || 'General'}</p></td>
+                    </tr>
+                    <tr>
+                        <td>Date : </td>
+                        <td></td>
+                        <td><p>{order.orderDate}</p></td>
+                    </tr>  
+                    <tr>
+                        <td>Phone : </td>
+                        <td></td>
+                        <td>{order.phone && <p>{order.phone}</p>}</td>
+                    </tr>
+                    <tr>
+                        <td>Cups : </td>
+                        <td></td>
+                        <td><p>{order.cups}</p></td>
+                    </tr>
+                </table>
               <button
                 onClick={() => handleOrderSelect(order)}
                 className=" text-white px-4 py-2 mt-2 rounded-lg"
@@ -218,26 +238,61 @@ const orders = [
       </div>
 
       {/* Order Detail section 30% */}
-      <div className="w-full lg:w-4/12 px-5 sticky bg-white" style={{ marginTop: -50, position: 'sticky', top: 0 }}>
+      <div className="w-full lg:w-4/12 px-5 sticky bg-white  rounded-lg" style={{ marginTop: -50, position: 'sticky', top: 0 }}>
       {selectedOrder ? (
           <div className="border rounded-lg p-4 bg-white">
-            <h3 className="font-bold">Order Details</h3>
-            <p>Queue: {selectedOrder.queueNumber}</p>
-            <p>Order Type: {selectedOrder.deliveryType}</p>
-            {selectedOrder.deliveryType === 'Delivery' && <p>Address: {selectedOrder.deliveryAddress}</p>}
-            <p>Customer: {selectedOrder.customerName || 'General Customer'}</p>
-            {selectedOrder.phone && <p>Phone: {selectedOrder.phone}</p>}
-            <p>Cups: {selectedOrder.cups}</p>
+            <h3 className="font-bold text-xl mb-2">Order Details</h3>
+            <hr></hr>
+            <table>
+                <tr>
+                    <td><p>Queue: {selectedOrder.queueNumber}</p></td>
+                    <td width="50px"></td>
+                    <td><p>Order Type: {selectedOrder.deliveryType}</p></td>
+                </tr>
+                <tr>
+                    <td><p>Customer: {selectedOrder.customerName || 'General Customer'}</p></td>
+                    <td></td>
+                    <td>{selectedOrder.phone && <p>Phone: {selectedOrder.phone}</p>}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">{selectedOrder.deliveryType === 'Delivery' && <p>Address: {selectedOrder.deliveryAddress}</p>}</td>
+                </tr>
+                
+            </table>
             <div className="mt-2">
-              <h4 className="font-bold">Coffee Items:</h4>
+              <h4 className="font-bold">Order Items:</h4>
+              <table style={{border:"1px solid grey"}}>
+                    <tr style={{border:"1px solid grey"}}>
+                        <th width="150px" style={{border:"1px solid grey"}}>Menu</th>
+                        <th width="100px" style={{border:"1px solid grey"}}>Sweetness</th>
+                        <th width="100px" style={{border:"1px solid grey"}}>Type</th>
+                        <th width="100px" style={{border:"1px solid grey"}}>Separate</th>
+                        <th width="50px" style={{border:"1px solid grey"}}>QTY</th>
+                    </tr>
               {selectedOrder.coffeeItems.map((item, index) => (
-                <p key={index}>
-                  {item.name} - Sweetness: {item.sweetness}, Type: {item.type}, Separate: {item.separate}
-                </p>
+                    <tr key={index} style={{border:"1px solid grey",textAlign:"center"}}>
+                        <td width="150px" style={{border:"1px solid grey"}}>{item.name}</td>
+                        <td width="100px" style={{border:"1px solid grey"}}> {item.sweetness}</td>
+                        <td width="100px" style={{border:"1px solid grey"}}> {item.type}</td>
+                        <td width="100px" style={{border:"1px solid grey"}}> {item.separate}</td>
+                        <td width="50px" style={{border:"1px solid grey"}}> {item.qty}</td>
+                    </tr>
               ))}
+              <tr>
+                <td colspan="4" style={{textAlign:"right"}}><p>Cups : </p></td>
+                <td style={{textAlign:"right"}}><p>{selectedOrder.cups}</p></td>
+              </tr>
+              <tr>
+              <td colspan="4" style={{textAlign:"right"}}><p>Total : </p></td>
+              <td width="100px" style={{textAlign:"right"}}><p>{selectedOrder.total} THB</p></td>
+              </tr>
+              <tr>
+              <td colspan="4" style={{textAlign:"right"}}><p>Status : </p></td>
+              <td style={{textAlign:"right"}}><p>{selectedOrder.paymentStatus}</p></td>
+              </tr>
+            </table>
             </div>
-            <p className="mt-2">Total: {selectedOrder.total} THB</p>
-            <p>Status: {selectedOrder.paymentStatus}</p>
+          
             <div className="mt-4">
               <button className=" text-white px-4 py-2 mr-2 rounded-lg" style={{backgroundColor:"rgb(56 189 248)"}}>Mark as Completed</button>
               <button className="bg-red-500 text-white px-4 py-2 mr-2 rounded-lg">Cancel Order</button>
